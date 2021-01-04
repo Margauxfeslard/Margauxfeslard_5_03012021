@@ -13,7 +13,7 @@ function createCards(src, name, description, price, id) {
     p.classList.add('card-text');
     pricing.classList.add('card-text');
     a.classList.add('btn');
-    a.classList.add('btn-primary');
+    a.classList.add('btn-outline-primary');
     a.setAttribute("href", "product.html?id=" + id);
     firstDiv.style.width = '18rem';
     img.src = src;
