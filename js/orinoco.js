@@ -1,3 +1,4 @@
+/*********** Creation of a card ***********/
 function createCards(src, name, description, price, id) {
     const firstDiv = document.createElement('div');
     const secondDiv = document.createElement('div');
@@ -31,6 +32,7 @@ function createCards(src, name, description, price, id) {
     return firstDiv;
 }
 
+/*********** Get data from the API with a promise ***********/
 get("http://localhost:3000/api/teddies")
     .then(function (data) {
         for(const teddy of data) {

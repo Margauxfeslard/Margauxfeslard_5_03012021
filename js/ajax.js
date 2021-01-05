@@ -1,4 +1,4 @@
-/* Appel à l'API, méthode GET */
+/*********** API calls with GET method ***********/
 function get(url) {
     return new Promise(function (resolve, reject) {
         const request = new XMLHttpRequest();
@@ -16,7 +16,7 @@ function get(url) {
     });
 }
 
-/* Appel à l'API, méthode POST */
+/*********** Send DATA to the API with POST Method ***********/
 function post(url, jsonBody) {
     return new Promise(function (resolve, reject) {
         const request = new XMLHttpRequest();
