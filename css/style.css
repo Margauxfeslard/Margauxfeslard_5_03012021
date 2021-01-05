@@ -1,0 +1,15 @@
+.container.product {
+    max-width: 900px;
+}
+.card {
+    margin: 20px;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px;
+    color: #b06d9e;
+    font-weight: normal;
+}
