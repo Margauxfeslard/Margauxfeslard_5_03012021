@@ -1,10 +1,13 @@
 .container.product {
-    max-width: 900px;
+    max-width: 700px;
 }
 .card {
-    margin: 20px;
+    margin: 50px;
     padding: 0;
     text-align: center;
+}
+#colors{
+    margin: 30px 0;
 }
 
 h1 {
@@ -12,4 +15,34 @@ h1 {
     margin: 20px;
     color: #b06d9e;
     font-weight: normal;
+}
+
+#basket {
+    margin-top: 60px;
+}
+
+#basket > li > span:first-child{
+    padding: 0 40px;
+}
+
+#sum {
+    border: 2px solid #0d6efd;
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    margin: 50px;
+}
+
+.imageBasket{
+    width: 10%;
+}
+
+#orderForm {
+    width: 30%;
+    margin: 0 auto;
+}
+
+#orderConfirm{
+    margin: 20px 0;
+    width: 100%;
 }

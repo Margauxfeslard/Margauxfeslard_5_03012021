@@ -13,13 +13,13 @@ function getId() {
 }
 
 /*********** Add product to basket ***********/
-function addToBasket(id, name, price){
+function addToBasket(id, name,description, price, imageUrl){
     const button = document.getElementById('addToBasket');
     button.addEventListener('click', function(ev) {
         ev.preventDefault();
         button.style.backgroundColor = '#0d6efd';
         button.style.color = 'white';
-        const product = new Product(id, name, price);
+        const product = new Product(id, name, description, price, imageUrl);
         localStorage.setItem(name, JSON.stringify(product));
         alert('Le produit a été ajouté au panier ! ')
     })
@@ -44,12 +44,12 @@ function productOption(colors) {
 }
 
 /*********** Get data from the API with a promise ***********/
-get("http://localhost:3000/api/teddies")
+get("https://teddies-api.herokuapp.com/api/teddies")
     .then(function (response) {
         for(const teddy of response) {
             if(teddy._id === getId()) {
                 productData(teddy.imageUrl, teddy.name, teddy.description, teddy.price);
-                addToBasket(teddy._id,teddy.name,teddy.price);
+                addToBasket(teddy._id, teddy.name, teddy.description, teddy.price, teddy.imageUrl);
                 productOption(teddy.colors);
             }
         }

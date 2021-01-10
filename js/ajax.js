@@ -18,6 +18,13 @@ function get(url) {
 
 /*********** Send DATA to the API with POST Method ***********/
 function post(url, jsonBody) {
+    const request = new XMLHttpRequest();
+    request.open("POST", url);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(jsonBody));
+}
+
+/*function post(url, jsonBody) {
     return new Promise(function (resolve, reject) {
         const request = new XMLHttpRequest();
         request.open("POST", url);
@@ -33,4 +40,4 @@ function post(url, jsonBody) {
         };
         request.send(JSON.stringify(jsonBody));
     });
-}
+}*/

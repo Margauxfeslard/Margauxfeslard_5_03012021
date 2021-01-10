@@ -33,7 +33,7 @@ function createCards(src, name, description, price, id) {
 }
 
 /*********** Get data from the API with a promise ***********/
-get("http://localhost:3000/api/teddies")
+get("https://teddies-api.herokuapp.com/api/teddies")
     .then(function (data) {
         for(const teddy of data) {
             const row = document.getElementsByClassName('row')[0];
