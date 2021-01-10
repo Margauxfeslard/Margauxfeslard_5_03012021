@@ -41,7 +41,7 @@ function createList(parent, name, description, price, imageUrl) {
 let pricingTotal = 0;
 
 /*********** Get data from the API with a promise ***********/
-get("http://localhost:3000/api/teddies")
+get("https://teddies-api.herokuapp.com/api/teddies")
     .then(function (response) {
         for(const teddy of response) {
             const product = JSON.parse(localStorage.getItem(teddy.name));
@@ -61,7 +61,7 @@ orderValidation.addEventListener('click', function (ev){
     ev.preventDefault();
     const order = new OrderContact(firstName, lastName, address, city, email);
 
-    post("http://localhost:3000/api/teddies/order", order);
+    post("https://teddies-api.herokuapp.com/api/teddies/order", order);
 });
 
 
