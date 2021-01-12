@@ -11,12 +11,19 @@
     padding: 20px;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: 50px;
+}
+
 #parent{
     padding: 0;
     margin-bottom: 40px;
 }
 .card {
-    margin: 50px;
+    margin: 30px;
     padding: 0;
     text-align: center;
 }
