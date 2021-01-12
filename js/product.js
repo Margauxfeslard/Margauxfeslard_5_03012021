@@ -21,7 +21,7 @@ function addToBasket(id, name,description, price, imageUrl){
         button.style.color = 'white';
         const product = new Product(id, name, description, price, imageUrl);
         localStorage.setItem(name, JSON.stringify(product));
-        alert('Le produit a été ajouté au panier ! ')
+        //alert('Le produit a été ajouté au panier ! ')
     })
 }
 
@@ -44,16 +44,14 @@ function productOption(colors) {
 }
 
 /*********** Get data from the API with a promise ***********/
-get("https://teddies-api.herokuapp.com/api/teddies")
+get("http://localhost:3000/api/teddies")
     .then(function (response) {
         for(const teddy of response) {
             if(teddy._id === getId()) {
-                productData(teddy.imageUrl, teddy.name, teddy.description, teddy.price);
-                addToBasket(teddy._id, teddy.name, teddy.description, teddy.price, teddy.imageUrl);
+                productData(teddy.imageUrl, teddy.name, teddy.description, teddy.price/100);
+                addToBasket(teddy._id, teddy.name, teddy.description, teddy.price/100, teddy.imageUrl);
                 productOption(teddy.colors);
             }
         }
     })
-    .catch(function (error) {
-        console.log('promise failed !');
-    })
+    .catch(error => alert("Erreur : " + error));

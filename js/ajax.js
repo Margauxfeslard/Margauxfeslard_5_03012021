@@ -17,8 +17,8 @@ function get(url) {
 }
 
 /*********** Send DATA to the API with POST Method ***********/
-function sendFormData(data) {
-    fetch("https://teddies-api.herokuapp.com/api/teddies/order", {
+function sendFormData(data, location) {
+    fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -28,6 +28,7 @@ function sendFormData(data) {
         .then(response => response.json())
         .then(response => {
             localStorage.setItem('orderWithContact', JSON.stringify(response));
+            document.location.replace(location);
         })
         .catch(error => alert("Erreur : " + error));
 }

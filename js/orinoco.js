@@ -33,13 +33,11 @@ function createCards(src, name, description, price, id) {
 }
 
 /*********** Get data from the API with a promise ***********/
-get("https://teddies-api.herokuapp.com/api/teddies")
+get("http://localhost:3000/api/teddies")
     .then(function (data) {
         for(const teddy of data) {
             const row = document.getElementsByClassName('row')[0];
-            row.appendChild(createCards(teddy.imageUrl, teddy.name, teddy.description, teddy.price, teddy._id));
+            row.appendChild(createCards(teddy.imageUrl, teddy.name, teddy.description, teddy.price/100, teddy._id));
         }
     })
-    .catch(function (error) {
-        console.log('promise failed !');
-    })
+    .catch(error => alert("Erreur : " + error));

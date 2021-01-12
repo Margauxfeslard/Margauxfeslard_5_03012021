@@ -14,7 +14,7 @@ recap.innerHTML = "Livraison à l\'adresse suivante : " + order.contact.address 
 
 const products = order.products;
 for (const product of products) {
-    createList(parent, product.name, product.description, product.price, product.imageUrl);
+    createList(parent, product.name, product.description, product.price/100, product.imageUrl);
 }
 
 /*********** Back to product and localStorage ***********/

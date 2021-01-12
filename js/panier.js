@@ -15,7 +15,7 @@ let pricingTotal = 0;
 let products = []
 
 /*********** Get data from the API with a promise ***********/
-get("https://teddies-api.herokuapp.com/api/teddies")
+get("http://localhost:3000/api/teddies")
     .then(function (response) {
         for(const teddy of response) {
             const product = JSON.parse(localStorage.getItem(teddy.name));
@@ -27,17 +27,12 @@ get("https://teddies-api.herokuapp.com/api/teddies")
             }
         }
     })
-    .catch(function (error) {
-        console.log('promise failed !');
-    })
+    .catch(error => alert("Erreur : " + error));
 
 /*********** Get form data ***********/
-orderValidation.addEventListener('click', function (ev){
+orderValidation.addEventListener('click', function (ev) {
     ev.preventDefault();
     const contact = new Contact(firstName.value, lastName.value, address.value, city.value, email.value);
     const order = new Order(products, contact);
-    sendFormData(order);
-    window.location.replace('order.html');
+    sendFormData(order, 'order.html');
 });
-
-
