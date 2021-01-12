@@ -14,6 +14,22 @@ let pricingTotal = 0;
 /*********** Initialize products ***********/
 let products = []
 
+/*********** Data validation ***********/
+/*function isValid(value) {
+    if(/(.*)/.test(value.value)) {
+        return true;
+    } else {
+        return value.setCustomValidity('Ce champ n\'est pas valide');
+    }
+}*/
+
+/*function isValidAddress(value) {
+    if(/(.*)/.test(value.value)) {
+        return true;
+    } else {
+        return value.setCustomValidity('Votre adresse n\'est pas correct');
+    }
+}*/
 /*********** Get data from the API with a promise ***********/
 get("http://localhost:3000/api/teddies")
     .then(function (response) {
@@ -30,9 +46,11 @@ get("http://localhost:3000/api/teddies")
     .catch(error => alert("Erreur : " + error));
 
 /*********** Get form data ***********/
-orderValidation.addEventListener('click', function (ev) {
-    ev.preventDefault();
-    const contact = new Contact(firstName.value, lastName.value, address.value, city.value, email.value);
-    const order = new Order(products, contact);
-    sendFormData(order, 'order.html');
-});
+/*if(isValid(firstName) && isValid(lastName) && isValid(city) && isValidAddress(address)) {*/
+    orderValidation.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        const contact = new Contact(firstName.value, lastName.value, address.value, city.value, email.value);
+        const order = new Order(products, contact);
+        sendFormData(order, 'order.html');
+    })
+

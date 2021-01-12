@@ -21,7 +21,7 @@ function addToBasket(id, name,description, price, imageUrl){
         button.style.color = 'white';
         const product = new Product(id, name, description, price, imageUrl);
         localStorage.setItem(name, JSON.stringify(product));
-        //alert('Le produit a été ajouté au panier ! ')
+        alert('Le produit a été ajouté au panier ! ')
     })
 }
 
