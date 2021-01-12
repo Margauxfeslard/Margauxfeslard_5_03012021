@@ -1,4 +1,4 @@
-class OrderContact {
+class Contact {
     constructor(firstName, lastName, address, city, email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -9,8 +9,8 @@ class OrderContact {
 }
 
 class Order {
-    constructor(products, orderId) {
+    constructor(products, contact) {
         this.products = products;
-        this.orderId = orderId;
+        this.contact = contact;
     }
 }
