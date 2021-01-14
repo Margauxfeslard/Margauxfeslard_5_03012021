@@ -10,8 +10,8 @@ const sum = document.getElementById('sum');
 /*********** Order confirmation ***********/
 contact.innerText = 'Hello ' + order.contact.firstName + ' !';
 orderNumber.innerText = 'Merci pour ta commande #' + order.orderId;
-recap.innerHTML = "Livraison à l\'adresse suivante : " + order.contact.address + order.contact.city +'.<br>' +
-    "Une confirmation de commande te sera envoyée à l\'adresse suivante :" + order.contact.email;
+recap.innerHTML = "Livraison à l\'adresse suivante : " + '<strong>'+ order.contact.address + order.contact.city + '</strong>.<br>' +
+    "Une confirmation de commande te sera envoyée à " + '<strong>'+ order.contact.email +'</strong>' ;
 
 const products = order.products;
 for (const product of products) {
