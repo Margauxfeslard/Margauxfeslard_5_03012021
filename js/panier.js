@@ -18,12 +18,13 @@ let products = []
 get("http://localhost:3000/api/teddies")
     .then(function (response) {
         for(const teddy of response) {
-            const product = JSON.parse(localStorage.getItem(teddy.name));
+            const product = retrieveProducts(teddy.name);
             if(product){
                 products.push(product._id);
-                createList(basket, product.name, product.description, product.price, product.imageUrl)
-                pricingTotal += product.price;
+                createList(basket, product.name, product.description, product.price, product.imageUrl, product.quantity)
+                pricingTotal += product.price * product.quantity;
                 sum.innerHTML = "Prix total : "+ pricingTotal + "<sup>€</sup>";
+                localStorage.setItem('totalPrice', JSON.stringify(pricingTotal));
             }
         }
     })

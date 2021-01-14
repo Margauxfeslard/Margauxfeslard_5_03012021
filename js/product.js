@@ -3,7 +3,8 @@ const img = document.getElementsByClassName('card-img-top')[0];
 const h5 = document.getElementsByClassName('card-title')[0];
 const p = document.getElementsByClassName('card-text')[0];
 const pricing = document.getElementsByClassName('card-text')[1];
-const select = document.getElementById('colors');
+const selectColors = document.getElementById('colors');
+const selectQuantity = document.getElementById('quantity');
 const title = document.getElementsByTagName('title')[0];
 
 /*********** Get ID from URL ***********/
@@ -19,7 +20,8 @@ function addToBasket(id, name,description, price, imageUrl){
         ev.preventDefault();
         button.style.backgroundColor = '#0d6efd';
         button.style.color = 'white';
-        const product = new Product(id, name, description, price, imageUrl);
+        const quantity = selectQuantity.options.selectedIndex + 1;
+        const product = new Product(id, name, description, price, imageUrl, quantity);
         localStorage.setItem(name, JSON.stringify(product));
         alert('Le produit a été ajouté au panier ! ')
     })
@@ -39,18 +41,27 @@ function productOption(colors) {
         const colorOption = document.createElement('option');
         colorOption.innerText = color;
         colorOption.setAttribute('value', color);
-        select.appendChild(colorOption);
+        selectColors.appendChild(colorOption);
     }
 }
 
+function quantityOfProduct(){
+    for(let i = 1; i <= 10; i++){
+        const quantity = document.createElement('option');
+        quantity.innerText = JSON.stringify(i);
+        quantity.setAttribute('value', JSON.stringify(i));
+        selectQuantity.appendChild(quantity);
+    }
+}
 /*********** Get data from the API with a promise ***********/
 get("http://localhost:3000/api/teddies")
     .then(function (response) {
         for(const teddy of response) {
             if(teddy._id === getId()) {
+                productOption(teddy.colors);
+                quantityOfProduct();
                 productData(teddy.imageUrl, teddy.name, teddy.description, teddy.price/100);
                 addToBasket(teddy._id, teddy.name, teddy.description, teddy.price/100, teddy.imageUrl);
-                productOption(teddy.colors);
             }
         }
     })
