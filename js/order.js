@@ -8,6 +8,7 @@ const back = document.getElementById('backProduct');
 const sum = document.getElementById('sum');
 
 /*********** Order confirmation ***********/
+contact.style.color = "#D07E46";
 contact.innerText = 'Hello ' + order.contact.firstName + ' !';
 orderNumber.innerText = 'Merci pour ta commande #' + order.orderId;
 recap.innerHTML = "Livraison à l\'adresse suivante : " + '<strong>'+ order.contact.address + order.contact.city + '</strong>.<br>' +

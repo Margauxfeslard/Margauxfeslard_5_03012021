@@ -25,6 +25,7 @@ function addToBasket(id, name,description, price, imageUrl){
         const product = new Product(id, name, description, price, imageUrl, quantity);
         localStorage.setItem(name, JSON.stringify(product));
         alertMessage(this.parentNode);
+        button.setAttribute('disabled', 'true');
     })
 }
 /*********** Create alert message ***********/
