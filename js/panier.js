@@ -25,6 +25,8 @@ get("https://oc-devweb-p5-api.herokuapp.com/api/teddies")
                 pricingTotal += product.price * product.quantity;
                 sum.innerHTML = "Prix total : "+ pricingTotal + "<sup>€</sup>";
                 localStorage.setItem('totalPrice', JSON.stringify(pricingTotal));
+                orderValidation.removeAttribute('hidden');
+                sum.removeAttribute('hidden');
             }
         }
     })
