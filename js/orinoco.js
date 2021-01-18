@@ -37,7 +37,9 @@ get("https://oc-devweb-p5-api.herokuapp.com/api/teddies")
     .then(function (data) {
         for(const teddy of data) {
             const row = document.getElementsByClassName('row')[0];
-            row.appendChild(createCards(teddy.imageUrl, teddy.name, teddy.description, teddy.price/100, teddy._id));
+            row.appendChild(createCards(teddy.imageUrl, teddy.name, teddy.description, teddy.price, teddy._id));
         }
     })
-    .catch(error => alert("Erreur : " + error));
+    .catch(function (error) {
+        console.log('promise failed !');
+    })

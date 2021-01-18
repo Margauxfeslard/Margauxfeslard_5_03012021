@@ -54,7 +54,7 @@ function quantityOfProduct(){
     }
 }
 /*********** Get data from the API with a promise ***********/
-get("http://localhost:3000/api/teddies")
+get("https://oc-devweb-p5-api.herokuapp.com/api/teddies")
     .then(function (response) {
         for(const teddy of response) {
             if(teddy._id === getId()) {

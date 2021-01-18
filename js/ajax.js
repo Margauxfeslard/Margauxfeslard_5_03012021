@@ -18,7 +18,7 @@ function get(url) {
 
 /*********** Send DATA to the API with POST Method ***********/
 function sendFormData(data, location) {
-    fetch("http://localhost:3000/api/teddies/order", {
+    fetch("https://oc-devweb-p5-api.herokuapp.com/api/teddies/order", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
