@@ -6,6 +6,7 @@ const pricing = document.getElementsByClassName('card-text')[1];
 const selectColors = document.getElementById('colors');
 const selectQuantity = document.getElementById('quantity');
 const title = document.getElementsByTagName('title')[0];
+const addProduct = document.getElementById('addToBasket');
 
 /*********** Get ID from URL ***********/
 function getId() {
@@ -18,13 +19,22 @@ function addToBasket(id, name,description, price, imageUrl){
     const button = document.getElementById('addToBasket');
     button.addEventListener('click', function(ev) {
         ev.preventDefault();
-        button.style.backgroundColor = '#0d6efd';
+        button.style.backgroundColor = '#D07E46';
         button.style.color = 'white';
         const quantity = selectQuantity.options.selectedIndex + 1;
         const product = new Product(id, name, description, price, imageUrl, quantity);
         localStorage.setItem(name, JSON.stringify(product));
-        alert('Le produit a été ajouté au panier ! ')
+        alertMessage(this.parentNode);
     })
+}
+/*********** Create alert message ***********/
+function alertMessage(parent){
+    const alert = document.createElement('div');
+    alert.classList.add('alert');
+    alert.classList.add('alert-warning');
+    alert.setAttribute('role', 'alert');
+    alert.innerText = 'Le produit a été ajouté au panier ! ';
+    parent.insertBefore(alert, addProduct);
 }
 
 /*********** Add product data and option ***********/
