@@ -8,15 +8,11 @@ const city = document.getElementsByName('city')[0];
 const email = document.getElementsByName('email')[0];
 const orderValidation = document.getElementById('orderForm');
 
-/*********** Calculate total sum ***********/
-let pricingTotal = 0;
-
-/*********** Initialize products ***********/
-let products = []
-
 /*********** Get data from the API with a promise ***********/
 get("https://oc-devweb-p5-api.herokuapp.com/api/teddies")
     .then(function (response) {
+        let products = [];
+        let pricingTotal = 0;
         for(const teddy of response) {
             const product = retrieveProducts(teddy.name);
             if(product){
@@ -35,9 +31,45 @@ get("https://oc-devweb-p5-api.herokuapp.com/api/teddies")
 /*********** Get form data ***********/
 orderValidation.addEventListener('submit', function (ev) {
     ev.preventDefault();
-    const contact = new Contact(firstName.value, lastName.value, address.value, city.value, email.value);
-    const order = new Order(products, contact);
-    sendFormData(order, 'order.html');
+    const contact = {
+        "firstName" : firstName.value,
+        "lastName": lastName.value,
+        "address" : address.value,
+        "city" : city.value,
+        "email" : email.value
+    }
+    const order = {
+        "products" : products,
+        "contact" : contact
+    }
+    sendFormData(order);
 })
 
+/*********** Create list of choosed product ***********/
+function createList(parent, name, description, price, imageUrl, quantity) {
+    const li = document.createElement('li');
+    const image = document.createElement('img');
+    const span1 = document.createElement('span');
+    const span2 = document.createElement('span');
+    const span3 = document.createElement('span');
+    li.classList.add('list-group-item');
+    li.classList.add('d-flex');
+    li.classList.add('justify-content-between');
+    li.classList.add('align-items-center');
+    li.innerHTML = name;
+    image.classList.add('imageBasket');
+    image.src = imageUrl;
+    span1.innerText = description;
+    span2.classList.add('badge');
+    span2.classList.add('bg-primary');
+    span2.classList.add('rounded-pill');
+    span2.innerHTML = 'Prix : ' + price + "<sup>€</sup>";
+    span3.classList.add('quantity');
+    span3.innerText = 'Quantités: ' + quantity;
+    li.appendChild(image);
+    li.appendChild(span1);
+    li.appendChild(span3);
+    li.appendChild(span2);
+    parent.appendChild(li);
+}
 

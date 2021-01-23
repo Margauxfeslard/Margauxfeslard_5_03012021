@@ -7,27 +7,29 @@ const selectColors = document.getElementById('colors');
 const selectQuantity = document.getElementById('quantity');
 const title = document.getElementsByTagName('title')[0];
 const addProduct = document.getElementById('addToBasket');
+const button = document.getElementById('addToBasket');
 
-/*********** Get ID from URL ***********/
-function getId() {
-    const url = new URL(window.location.href);
-    return url.searchParams.get("id");
-}
-
+const productsLocalStorage = [];
 /*********** Add product to basket ***********/
-function addToBasket(id, name,description, price, imageUrl){
-    const button = document.getElementById('addToBasket');
+function addToBasket(id, name, description, price, imageUrl){
     button.addEventListener('click', function(ev) {
         ev.preventDefault();
-        button.style.backgroundColor = '#D07E46';
-        button.style.color = 'white';
-        const quantity = selectQuantity.options.selectedIndex + 1;
-        const product = new Product(id, name, description, price, imageUrl, quantity);
-        localStorage.setItem(name, JSON.stringify(product));
         alertMessage(this.parentNode);
         button.setAttribute('disabled', 'true');
+        const quantity = selectQuantity.options.selectedIndex + 1;
+        const product = {
+            "_id" : id,
+            "name" : name,
+            "description" : description,
+            "price" : price,
+            "imageUrl" : imageUrl,
+            "quantity" : quantity
+        };
+        productsLocalStorage.push(product)
+        localStorage.setItem("productsOrdered", JSON.stringify(productsLocalStorage));
     })
 }
+
 /*********** Create alert message ***********/
 function alertMessage(parent){
     const alert = document.createElement('div');
@@ -64,6 +66,7 @@ function quantityOfProduct(){
         selectQuantity.appendChild(quantity);
     }
 }
+
 /*********** Get data from the API with a promise ***********/
 get("https://oc-devweb-p5-api.herokuapp.com/api/teddies")
     .then(function (response) {
