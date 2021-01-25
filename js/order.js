@@ -6,17 +6,17 @@ const parent = document.getElementById('parent');
 const back = document.getElementById('backProduct');
 const sum = document.getElementById('sum');
 
-
 /*********** Order confirmation number ***********/
 const orderID = getId();
+const contactInformation = retrieveProducts('contact');
+const productsOrdered = retrieveProducts('products');
 
 contact.style.color = "#D07E46";
-contact.innerText = 'Hello ' + contact.firstName + ' !';
+contact.innerText = 'Hello ' + contactInformation.firstName + ' !';
 orderNumber.innerText = 'Merci pour ta commande #' + orderID;
-recap.innerHTML = "Livraison à l\'adresse suivante : " + '<strong>'+ order.contact.address +' '+ order.contact.city + '</strong>.<br>' +
-    "Une confirmation de commande te sera envoyée à " + '<strong>'+ order.contact.email +'</strong>' ;
+recap.innerHTML = "Livraison à l\'adresse suivante : " + '<strong>'+ contactInformation.address +' '+ contactInformation.city + '</strong>.<br>' +
+    "Une confirmation de commande te sera envoyée à " + '<strong>'+ contactInformation.email +'</strong>' ;
 
-const productsOrdered = order.products;
 for (const product of productsOrdered) {
     const totalPrice = retrieveProducts('totalPrice');
     createListOrder(parent, product.name, product.description, product.imageUrl);
@@ -47,5 +47,3 @@ function createListOrder(parent, name, description, imageUrl) {
     li.appendChild(span1);
     parent.appendChild(li);
 }
-
-

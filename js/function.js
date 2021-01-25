@@ -27,7 +27,10 @@ function sendFormData(data) {
     })
         .then(response => response.json())
         .then(function (response) {
+            localStorage.setItem('contact', JSON.stringify(response.contact));
+            localStorage.setItem('products', JSON.stringify(response.products));
             document.location.replace('order.html?id=' + response.orderId);
+
         })
         .catch(error => alert("Erreur : " + error));
 }

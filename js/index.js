@@ -1,3 +1,13 @@
+/*********** Get data from the API with a promise ***********/
+get("https://oc-devweb-p5-api.herokuapp.com/api/teddies")
+    .then(function (data) {
+        for(const teddy of data) {
+            const row = document.getElementsByClassName('row')[0];
+            row.appendChild(createCards(teddy.imageUrl, teddy.name, teddy.description, teddy.price/100, teddy._id));
+        }
+    })
+    .catch(error => alert("Erreur : " + error));
+
 /*********** Creation of a card ***********/
 function createCards(src, name, description, price, id) {
     const firstDiv = document.createElement('div');
@@ -31,13 +41,3 @@ function createCards(src, name, description, price, id) {
 
     return firstDiv;
 }
-
-/*********** Get data from the API with a promise ***********/
-get("https://oc-devweb-p5-api.herokuapp.com/api/teddies")
-    .then(function (data) {
-        for(const teddy of data) {
-            const row = document.getElementsByClassName('row')[0];
-            row.appendChild(createCards(teddy.imageUrl, teddy.name, teddy.description, teddy.price/100, teddy._id));
-        }
-    })
-    .catch(error => alert("Erreur : " + error));

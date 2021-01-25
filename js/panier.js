@@ -8,15 +8,15 @@ const city = document.getElementsByName('city')[0];
 const email = document.getElementsByName('email')[0];
 const orderValidation = document.getElementById('orderForm');
 
+let productsId = [];
 /*********** Get data from the API with a promise ***********/
 get("https://oc-devweb-p5-api.herokuapp.com/api/teddies")
-    .then(function (response) {
-        let products = [];
+    .then(function () {
         let pricingTotal = 0;
-        for(const teddy of response) {
-            const product = retrieveProducts(teddy.name);
-            if(product){
-                products.push(product._id);
+        const productsInLocalStorage = retrieveProducts("productsOrdered");
+        if(productsInLocalStorage){
+            for (const product of productsInLocalStorage){
+                productsId.push(product._id);
                 createList(basket, product.name, product.description, product.price, product.imageUrl, product.quantity)
                 pricingTotal += product.price * product.quantity;
                 sum.innerHTML = "Prix total : "+ pricingTotal + "<sup>€</sup>";
@@ -38,8 +38,9 @@ orderValidation.addEventListener('submit', function (ev) {
         "city" : city.value,
         "email" : email.value
     }
+
     const order = {
-        "products" : products,
+        "products" : productsId,
         "contact" : contact
     }
     sendFormData(order);

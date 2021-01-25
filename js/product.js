@@ -25,8 +25,10 @@ function addToBasket(id, name, description, price, imageUrl){
             "imageUrl" : imageUrl,
             "quantity" : quantity
         };
-        productsLocalStorage.push(product)
-        localStorage.setItem("productsOrdered", JSON.stringify(productsLocalStorage));
+        const articleInLocalStorage = [retrieveProducts("productsOrdered")];
+        productsLocalStorage.push(...articleInLocalStorage, product)
+        const productToSet = removeNull(productsLocalStorage.flat(4));
+        localStorage.setItem("productsOrdered", JSON.stringify(productToSet));
     })
 }
 
@@ -65,6 +67,10 @@ function quantityOfProduct(){
         quantity.setAttribute('value', JSON.stringify(i));
         selectQuantity.appendChild(quantity);
     }
+}
+
+function removeNull(array) {
+    return array.filter(x => x !== null)
 }
 
 /*********** Get data from the API with a promise ***********/
