@@ -6,11 +6,12 @@ const parent = document.getElementById('parent');
 const back = document.getElementById('backProduct');
 const sum = document.getElementById('sum');
 
-/*********** Order confirmation number ***********/
+/*********** Order confirmation number and data ***********/
 const orderID = getId();
 const contactInformation = retrieveProducts('contact');
 const productsOrdered = retrieveProducts('products');
 
+/*********** Display order confirmation ***********/
 contact.style.color = "#D07E46";
 contact.innerText = 'Hello ' + contactInformation.firstName + ' !';
 orderNumber.innerText = 'Merci pour ta commande #' + orderID;
@@ -21,8 +22,8 @@ for (const product of productsOrdered) {
     const totalPrice = retrieveProducts('totalPrice');
     createListOrder(parent, product.name, product.description, product.imageUrl);
     sum.innerHTML = "Prix total : "+ totalPrice + "<sup>€</sup>";
-
 }
+
 /*********** Back to product and localStorage ***********/
 back.addEventListener('click', function(ev) {
     ev.preventDefault();

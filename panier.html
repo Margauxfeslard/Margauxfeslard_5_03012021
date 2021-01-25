@@ -41,13 +41,13 @@
         </div>
         <form id="orderForm" method="post" hidden="" action="http://localhost:3000/api/teddies/order" enctype="multipart/form-data">
             <label>Prénom</label>
-            <input type="text" class="form-control" name="firstName" placeholder="Alice" required="required"/>
+            <input type="text" class="form-control" name="firstName" placeholder="Alice" required/>
             <label>Nom</label>
-            <input type="text" name="lastName" class="form-control"  placeholder="Jacquot" required="required"/>
+            <input type="text" name="lastName" class="form-control"  placeholder="Jacquot" required/>
             <label>Adresse</label>
             <input type="text" name="address" class="form-control" placeholder="8 rue Jean Lauret" required />
             <label>Ville</label>
-            <input type="text" name="city" class="form-control" required placeholder="Lille">
+            <input type="text" name="city" class="form-control" placeholder="Lille" required>
             <label>Adresse mail</label>
             <input type="email" name="email" class="form-control" required placeholder="alice.jacquot@gmail.com">
             <button type="submit" id="orderConfirm" class="btn btn-primary">Passer ma commande !</button>

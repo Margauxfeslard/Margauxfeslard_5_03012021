@@ -17,22 +17,22 @@ function get(url) {
 }
 
 /*********** Send DATA to the API with POST Method ***********/
-function sendFormData(data) {
-    fetch("https://oc-devweb-p5-api.herokuapp.com/api/teddies/order", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => response.json())
-        .then(function (response) {
-            localStorage.setItem('contact', JSON.stringify(response.contact));
-            localStorage.setItem('products', JSON.stringify(response.products));
-            document.location.replace('order.html?id=' + response.orderId);
-
-        })
-        .catch(error => alert("Erreur : " + error));
+function post(url, data) {
+    return new Promise(function (resolve, reject) {
+        const request = new XMLHttpRequest();
+        request.open("POST", url);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 201) {
+                    resolve(JSON.parse(this.responseText));
+                } else {
+                    reject(request.status);
+                }
+            }
+        };
+        request.send(JSON.stringify(data));
+    });
 }
 
 /*********** Retrieved data from localStorage ***********/

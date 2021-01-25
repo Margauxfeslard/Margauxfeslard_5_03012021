@@ -43,8 +43,20 @@ orderValidation.addEventListener('submit', function (ev) {
         "products" : productsId,
         "contact" : contact
     }
-    sendFormData(order);
+    post("https://oc-devweb-p5-api.herokuapp.com/api/teddies/order", order)
+        .then(function (response) {
+            localStorage.setItem('contact', JSON.stringify(response.contact));
+            localStorage.setItem('products', JSON.stringify(response.products));
+            document.location.replace('order.html?id=' + response.orderId);
+
+        })
+        .catch(error => alert("Erreur : " + error));
 })
+
+/*********** Form validation ***********/
+orderValidation.addEventListener('submit', function() {
+    this.reportValidity();
+}, false);
 
 /*********** Create list of choosed product ***********/
 function createList(parent, name, description, price, imageUrl, quantity) {
